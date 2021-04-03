@@ -8,4 +8,9 @@ Running the development server:
 
 ```bash
 python manage.py runserver --settings=candidates_project.dev_settings
+
+# OR
+
+DJANGO_SETTINGS_MODULE='candidates_project.dev_settings'
+python manage.py runserver
 ```
