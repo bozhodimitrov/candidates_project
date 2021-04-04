@@ -12,8 +12,11 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from pathlib import Path
 
+
+PROJECT_DIR = Path(__file__).resolve().parent
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = PROJECT_DIR.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -55,7 +58,9 @@ ROOT_URLCONF = 'candidates_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            PROJECT_DIR / 'templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
