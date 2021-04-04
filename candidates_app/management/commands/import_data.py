@@ -27,6 +27,9 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
+        if not os.path.isfile(options['source_file']):
+            raise CommandError(f"Invalid file: {options['source_file']}")
+
         filename, ext = os.path.splitext(options['source_file'])
         if ext.endswith('csv'):
             self.import_csv(options['source_file'])
