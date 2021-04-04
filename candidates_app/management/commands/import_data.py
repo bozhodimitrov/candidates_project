@@ -19,7 +19,7 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument(
-            'data_file',
+            'source_file',
             default=DEFAULT_FILENAME,
             help=f'source file containing data (default: {DEFAULT_FILENAME})',
             nargs='?',
@@ -27,9 +27,9 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
-        filename, ext = os.path.splitext(options['data_file'])
+        filename, ext = os.path.splitext(options['source_file'])
         if ext.endswith('csv'):
-            self.import_csv(options['data_file'])
+            self.import_csv(options['source_file'])
         else:
             raise CommandError('Unsupported file format')
 
