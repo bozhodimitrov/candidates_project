@@ -1,2 +1,53 @@
 {% extends 'base.html' %}
 {% block title %}Candidates{% endblock %}
+
+{% block style %}
+<style>
+    table {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    td, th {
+        border: 1px solid black;
+        padding: 5px;
+    }
+
+    td.linebreak div {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    tr.highlight {
+        background-color: #8bc34a;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+    <h1>Candidates</h1>
+    {% if candidates %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for candidate in candidates %}
+                <tr {% if candidate == best_candidate %}class="highlight"{% endif %}>
+                    <td>{{candidate.name}}</td>
+                    <td class="linebreak">
+                        {% for score in candidate.scores.all|dictsort:"value" %}
+                        <div>{{score}}</div>
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No entries</p>
+    {% endif%}
+{% endblock %}
