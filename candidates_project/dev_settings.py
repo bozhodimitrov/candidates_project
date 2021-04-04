@@ -121,3 +121,22 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# LOGGING = {
+#     'disable_existing_loggers': False,
+#     'version': 1,
+#     'handlers': {
+#         'console': {
+#             # logging handler that outputs log messages to terminal
+#             'class': 'logging.StreamHandler',
+#             'level': 'DEBUG',  # message level to be written to console
+#         },
+#     },
+#     'loggers': {
+#         'django.db': {
+#             # django also has database level logging
+#             'handlers': ['console'],
+#             'level': 'DEBUG',
+#         },
+#     },
+# }
