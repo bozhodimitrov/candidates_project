@@ -47,6 +47,7 @@ I used the following list of resources as a reference:
   - [Built-in template tags and filters](https://docs.djangoproject.com/en/3.1/ref/templates/builtins/)
   - [Validators](https://docs.djangoproject.com/en/3.1/ref/validators/)
   - [Custom management commands](https://docs.djangoproject.com/en/3.1/howto/custom-management-commands/)
+  - [Signals](https://docs.djangoproject.com/en/3.1/topics/signals/)
 - Python
   - [json](https://docs.python.org/3/library/json.html)
   - [csv](https://docs.python.org/3/library/csv.html)
