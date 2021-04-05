@@ -46,8 +46,11 @@ class Command(BaseCommand):
             raise CommandError('Unsupported file format')
 
     def json_to_csv(self, source_file, output_file):
-        with open(source_file) as f:
-            candidates = json.load(f)
+        try:
+            with open(source_file) as f:
+                candidates = json.load(f)
+        except json.decoder.JSONDecodeError:
+            raise CommandError('Invalid json file')
 
         candidates.sort(key=lambda candidate: candidate['score'])
 
