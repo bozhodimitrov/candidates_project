@@ -12,6 +12,11 @@ from candidates_app.models import Score
 
 
 DEFAULT_FILENAME = 'candidates.csv'
+INVALID_DATA_EXCEPTIONS = (
+    ValidationError,
+    ValueError,
+    KeyError,
+)
 
 
 class Command(BaseCommand):
@@ -40,7 +45,7 @@ class Command(BaseCommand):
         with open(csv_file) as f:
             reader = csv.DictReader(f)
             for record in reader:
-                with contextlib.suppress(ValidationError, ValueError):
+                with contextlib.suppress(INVALID_DATA_EXCEPTIONS):
                     with transaction.atomic():
                         Candidate(
                             name=record['name'],
