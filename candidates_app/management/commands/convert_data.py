@@ -40,7 +40,7 @@ class Command(BaseCommand):
         src_filename, src_ext = os.path.splitext(options['source_file'])
         out_filename, out_ext = os.path.splitext(options['output_file'])
 
-        if src_ext.endswith('json') and out_ext.endswith('.csv'):
+        if src_ext.endswith('json') and out_ext.endswith('csv'):
             self.json_to_csv(options['source_file'], options['output_file'])
         else:
             raise CommandError('Unsupported file format')
@@ -52,7 +52,10 @@ class Command(BaseCommand):
         except json.decoder.JSONDecodeError:
             raise CommandError('Invalid json file')
 
-        candidates.sort(key=lambda candidate: candidate['score'])
+        try:
+            candidates.sort(key=lambda candidate: candidate['score'])
+        except KeyError:
+            raise CommandError('Invalid data in source file')
 
         with open(output_file, mode='w', newline='') as f:
             writer = csv.DictWriter(
